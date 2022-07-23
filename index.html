@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href='main.css' rel='stylesheet' />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src='main.js'></script>
+  </head>
+  <body>
+    <h1>Daysmart to CSV Tool</h1>
+    <div id="main-content" class="main-content">
+        <div id="tbl-companies" class="small-content" >
+            <h4>Select Company:</h4>
+            <table class="table table-striped">
+                <tbody>
+                    <tr><td data-company="blackhawks">Fifth Third</td></tr>
+                    <tr><td data-company="johnnys">Johnny's</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="tbl-leagues" class="small-content" style="display: none;">
+            <h4>Select League:</h4>
+            <table class="table table-striped">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div id="tbl-teams" class="small-content" style="display: none;">
+            <h4>Select Team:</h4>
+            <table class="table table-striped">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div id="tbl-schedule" style="display: none;">
+            <h4 id="schedule-header"></h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th scope="col">Home Team</th>
+                      <th scope="col">Visitor Team</th>
+                      <th scope="col">Location</th>
+                      <th scope="col">Time</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div class="row justify-content-center">
+                <button type="button" class="btn btn-primary" id="btn-export-csv" style="width: 150px;">Export CSV</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-indicator" class="spinner-border" role="status" style="display:none;">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+  </body>
+</html>

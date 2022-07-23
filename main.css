@@ -1,0 +1,28 @@
+body {
+    background-color: aliceblue;
+    color: darkblue;
+}
+
+h1 {
+    text-align: center;
+}
+
+.main-content {
+
+}
+
+.small-content {
+    width: 50% !important; 
+    margin: auto;
+}
+
+table {    
+    cursor: pointer;
+}
+
+.spinner-border {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+

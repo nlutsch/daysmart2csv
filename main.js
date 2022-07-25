@@ -136,7 +136,7 @@ var exportCSVOnClick = function (event) {
     var json = currentScheduleData;
     for (var i = 0; i < json.length; i++) {
         let dt = new Date(json[i].EventTime.substr(0, json[i].EventTime.length - 1));
-        csvContent += "GAME,REGULAR,," + json[i].HomeTeam + "," + json[i].VisitorTeam + "," + dt.toLocaleDateString() + "," + dt.toLocaleString('en-US', {hour: '2-digit', minute: '2-digit'}) + ',1:30,' + json[i].Location + ',,\r\n';
+        csvContent += "GAME,REGULAR,," + json[i].HomeTeam + "," + json[i].VisitorTeam + "," + dt.toLocaleString('en-gb', {day:'numeric', month:'numeric', year:'numeric'}) + "," + dt.toLocaleString('en-US', {hour: '2-digit', minute: '2-digit'}) + ',1:30,' + json[i].Location + ',,\r\n';
     };
     csvContent += templateEnd;
 

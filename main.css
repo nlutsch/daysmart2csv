@@ -7,6 +7,10 @@ h1 {
     text-align: center;
 }
 
+h4 {
+    margin-top:15px;
+}
+
 .main-content {
 
 }
@@ -14,6 +18,13 @@ h1 {
 .small-content {
     width: 50% !important; 
     margin: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .small-content {
+        width: 80% !important; 
+        margin: auto;
+    }
 }
 
 table {    
@@ -24,5 +35,9 @@ table {
     position: absolute;
     left: 50%;
     top: 50%;
+}
+
+button {
+    margin-bottom: 15px;
 }
 

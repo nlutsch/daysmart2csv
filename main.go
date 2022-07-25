@@ -112,6 +112,5 @@ func runWebAppMode() {
 	http.HandleFunc("/getschedule", getSchedule)
 
 	// Start HTTP Web Server
-	//http.ListenAndServe(":8080", nil)
-	http.ListenAndServe("localhost:8081", nil)
+	http.ListenAndServe(":8080", nil)
 }

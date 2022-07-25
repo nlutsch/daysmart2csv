@@ -82,6 +82,7 @@ type EventTypeAttributes struct {
 
 type EventAttributes struct {
 	EventStart    DaysmartDate `json:"start"`
+	EventEnd      DaysmartDate `json:"end"`
 	HomeTeamId    int          `json:"hteam_id"`
 	VisitorTeamId int          `json:"vteam_id"`
 }
@@ -111,10 +112,11 @@ type Team struct {
 }
 
 type ScheduleEvent struct {
-	HomeTeam    string
-	VisitorTeam string
-	Location    string
-	EventTime   DaysmartDate
+	HomeTeam     string
+	VisitorTeam  string
+	Location     string
+	EventTime    DaysmartDate
+	EventEndTime DaysmartDate
 }
 
 func (j *DaysmartDate) UnmarshalJSON(b []byte) error {
@@ -256,10 +258,11 @@ func getScheduleForTeam(teamId string, leagueId string, companyName string) []Sc
 	for _, event := range events {
 		if event.Attributes.HomeTeamId == iTeamId || event.Attributes.VisitorTeamId == iTeamId {
 			teamsEvents = append(teamsEvents, ScheduleEvent{
-				HomeTeam:    getTeamNameById(event.Attributes.HomeTeamId, teams),
-				VisitorTeam: getTeamNameById(event.Attributes.VisitorTeamId, teams),
-				Location:    getLocationFromEventResp(eventResp, event),
-				EventTime:   event.Attributes.EventStart,
+				HomeTeam:     getTeamNameById(event.Attributes.HomeTeamId, teams),
+				VisitorTeam:  getTeamNameById(event.Attributes.VisitorTeamId, teams),
+				Location:     getLocationFromEventResp(eventResp, event),
+				EventTime:    event.Attributes.EventStart,
+				EventEndTime: event.Attributes.EventEnd,
 			})
 		}
 	}

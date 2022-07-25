@@ -136,7 +136,23 @@ var exportCSVOnClick = function (event) {
     var json = currentScheduleData;
     for (var i = 0; i < json.length; i++) {
         let dt = new Date(json[i].EventTime.substr(0, json[i].EventTime.length - 1));
-        csvContent += "GAME,REGULAR,," + json[i].HomeTeam + "," + json[i].VisitorTeam + "," + dt.toLocaleString('en-gb', {day:'numeric', month:'numeric', year:'numeric'}) + "," + dt.toLocaleString('en-US', {hour: '2-digit', minute: '2-digit'}) + ',1:30,' + json[i].Location + ',,\r\n';
+        let dtEnd = new Date(json[i].EventEndTime.substr(0, json[i].EventTime.length - 1));
+        let diffInMilliSeconds = Math.abs(dtEnd - dt) / 1000;
+
+        // calculate days
+        let days = Math.floor(diffInMilliSeconds / 86400);
+        diffInMilliSeconds -= days * 86400;
+
+        // calculate hours
+        let hours = Math.floor(diffInMilliSeconds / 3600) % 24;
+        diffInMilliSeconds -= hours * 3600;
+
+        // calculate minutes
+        let minutes = Math.floor(diffInMilliSeconds / 60) % 60;
+        diffInMilliSeconds -= minutes * 60;
+
+        csvContent += "GAME,REGULAR,," + json[i].HomeTeam + "," + json[i].VisitorTeam + "," + dt.toLocaleString('en-gb', { day: 'numeric', month: 'numeric', year: 'numeric' }) + ","
+            + dt.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit' }) + ',' + hours + ':' + minutes + ',' + json[i].Location + ',' + addressLookup[json[i].Location] + ',\r\n';
     };
     csvContent += templateEnd;
 
@@ -218,3 +234,10 @@ ex. Rink name, etc\
 Street address with zip/postal code\
 (Optional)\",\"Notes visible to your players\
 (Optional)\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,";
+
+const addressLookup = {
+    "Johnny's Ice House: East Rink": "1350 W Madison St, Chicago, IL 60607",
+    "Johnny's Ice House: West Rink": "2550 W Madison St, Chicago, IL 60612",
+    "Fifth Third Arena - Blackhawks Community Ice Rink: Hyundai Rink": "1801 W Jackson Blvd, Chicago, IL 60612",
+    "Fifth Third Arena - Blackhawks Community Ice Rink: Mission Rink": "1801 W Jackson Blvd, Chicago, IL 60612"
+};

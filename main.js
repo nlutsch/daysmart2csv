@@ -152,7 +152,7 @@ var exportCSVOnClick = function (event) {
         diffInMilliSeconds -= minutes * 60;
 
         csvContent += "GAME,REGULAR,," + json[i].HomeTeam + "," + json[i].VisitorTeam + "," + dt.toLocaleString('en-gb', { day: 'numeric', month: 'numeric', year: 'numeric' }) + ","
-            + dt.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit' }) + ',' + hours + ':' + minutes + ',' + json[i].Location + ',' + addressLookup[json[i].Location] + ',\r\n';
+            + dt.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit' }) + ',' + hours + ':' + minutes + ',"' + json[i].Location + '","' + addressLookup[json[i].Location] + '",\r\n';
     };
     csvContent += templateEnd;
 

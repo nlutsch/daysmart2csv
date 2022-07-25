@@ -5,6 +5,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             showLeagues(company);
         })
     });
+    document.getElementById('btn-back-to-companies').addEventListener('click', backToCompaniesClick);
+    document.getElementById('btn-back-to-leagues').addEventListener('click', backToLeaguesClick);
+    document.getElementById('btn-back-to-teams').addEventListener('click', backToTeamsClick);
 });
 
 var currentScheduleData = {};
@@ -161,6 +164,21 @@ var exportCSVOnClick = function (event) {
     }
 
     download(csvContent, teamName + '-Schedule.csv', 'text/csv;encoding:utf-8');
+};
+
+var backToCompaniesClick = function() {
+    document.getElementById('tbl-leagues').style.display = 'none';
+    document.getElementById('tbl-companies').style.display = 'block';
+};
+
+var backToLeaguesClick = function() {
+    document.getElementById('tbl-teams').style.display = 'none';
+    document.getElementById('tbl-leagues').style.display = 'block';
+};
+
+var backToTeamsClick = function() {
+    document.getElementById('tbl-teams').style.display = 'block';
+    document.getElementById('tbl-schedule').style.display = 'none';
 };
 
 var showLoading = function() {

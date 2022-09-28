@@ -2,20 +2,14 @@ package main
 
 import (
 	"bufio"
-	"embed"
 	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 )
-
-//go:embed index.html
-//go:embed main.js
-//go:embed main.css
-var f embed.FS   // For embedding files into exe
-const dir = "./" // For loading files from file directory
 
 func main() {
 	//runConsoleMode()
@@ -100,9 +94,18 @@ func runConsoleMode() {
 	}
 }
 
+func getCurrentExecutingPath() string {
+	ex, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	exPath := filepath.Dir(ex)
+	return exPath
+}
+
 func runWebAppMode() {
-	//fs := http.FileServer(http.FS(f)) // For loading files embedded in exe
-	fs := http.FileServer(http.Dir(dir)) // For loading files from file directory
+	currentPath := getCurrentExecutingPath() + "/public" // For loading files from file directory
+	fs := http.FileServer(http.Dir(currentPath))
 	http.HandleFunc("/", func(resp http.ResponseWriter, req *http.Request) {
 		resp.Header().Add("Cache-Control", "no-cache")
 		fs.ServeHTTP(resp, req)
